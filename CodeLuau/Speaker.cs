@@ -31,7 +31,6 @@ namespace CodeLuau
 			int? speakerId = null;
 			bool good = false;
 			bool appr = false;
-			//var nt = new List<string> {"Node.js", "Docker"};
 			var ot = new List<string>() { "Cobol", "Punch Cards", "Commodore", "VBScript" };
 
 			//DEFECT #5274 DA 12/10/2012
@@ -66,15 +65,7 @@ namespace CodeLuau
 							{
 								foreach (var session in Sessions)
 								{
-									//foreach (var tech in nt)
-									//{
-									//    if (session.Title.Contains(tech))
-									//    {
-									//        session.Approved = true;
-									//        break;
-									//    }
-									//}
-
+									
 									foreach (var tech in ot)
 									{
 										if (session.Title.Contains(tech) || session.Description.Contains(tech))
