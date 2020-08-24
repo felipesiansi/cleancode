@@ -27,14 +27,11 @@ namespace CodeLuau
 		/// <returns>speakerID</returns>
 		public RegisterResponse Register(IRepository repository)
 		{
-			// lets init some vars
 			int? speakerId = null;
 			bool good = false;
 			bool appr = false;
 			var ot = new List<string>() { "Cobol", "Punch Cards", "Commodore", "VBScript" };
 
-			//DEFECT #5274 DA 12/10/2012
-			//We weren't filtering out the prodigy domain so I added it.
 			var domains = new List<string>() { "aol.com", "prodigy.com", "compuserve.com" };
 
 			if (!string.IsNullOrWhiteSpace(FirstName))
