@@ -26,15 +26,13 @@ namespace CodeLuau
 		/// </summary>
 		/// <returns>speakerID</returns>
 		public RegisterResponse Register(IRepository repository)
-		{
-			int? speakerId = null;
+        {
+            int? speakerId = null;
 
             var error = ValidateData();
             if (error != null) return new RegisterResponse(error);
-          
-            var preferEmployers = new List<string>() { "Pluralsight", "Microsoft", "Google" };
 
-            bool speakerAppearsQualified = YearsExperience > 10 || HasBlog || Certifications.Count() > 3 || preferEmployers.Contains(Employer);
+            bool speakerAppearsQualified = AppearsExceptional();
 
             if (!speakerAppearsQualified)
             {
@@ -126,10 +124,20 @@ namespace CodeLuau
             {
                 return new RegisterResponse(RegisterError.SpeakerDoesNotMeetStandards);
             }
-                    
+
             //if we got this far, the speaker is registered.
             return new RegisterResponse((int)speakerId);
-		}
+        }
+
+        private bool AppearsExceptional()
+        {
+            if (YearsExperience > 10) return true;
+            if (HasBlog) return true;
+            if(Certifications.Count() > 3) return true;
+            var preferEmployers = new List<string>() { "Pluralsight", "Microsoft", "Google" };
+            if (preferEmployers.Contains(Employer)) return true;
+            return false;
+        }
 
         private RegisterError? ValidateData()
         {
