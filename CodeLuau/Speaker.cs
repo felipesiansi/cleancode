@@ -35,7 +35,7 @@ namespace CodeLuau
 				{
 					if (!string.IsNullOrWhiteSpace(Email))
 					{
-						//put list of employers in array
+						
 						var emps = new List<string>() { "Pluralsight", "Microsoft", "Google" };
 
 						bool good = Exp > 10 || HasBlog || Certifications.Count() > 3 || emps.Contains(Employer);
